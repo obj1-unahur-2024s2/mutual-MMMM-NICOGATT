@@ -1,9 +1,11 @@
 class Viaje {
-  var property idiomas
+  const property idioma = []
+  
 
   method sePuedeBroncear()
   method implicaEsfuerzo()
   method cuantosDias()  
+  method esInteresante() = idioma.size() > 1
 }
 
 class Playa inherits Viaje {
@@ -24,11 +26,34 @@ class ExcursionACiudad inherits Viaje {
   override method implicaEsfuerzo() = cantidadAtracciones.between(5, 8)
 
   override method sePuedeBroncear() = false 
+  
+  override method esInteresante() = super() or cantidadAtracciones == 5
 }
 
 class ExcursionACiudadTropical inherits ExcursionACiudad {
-  override method cuantosDias() = self.cuantosDias() + 1
+  override method cuantosDias() = super() + 1
 
   override method sePuedeBroncear() = true 
+
 }
+
+class SalidaDeTrekking inherits Viaje {
+  const kilometros
+  const diasDeSol
+
+  override method cuantosDias() = kilometros / 50
+
+  override method implicaEsfuerzo() = kilometros > 80
+
+  override method sePuedeBroncear() = diasDeSol > 200 or (diasDeSol.between(100, 200) and kilometros > 120)
+
+  override method esInteresante() = super() and diasDeSol > 140
+}
+
+class ClasesDeGimnasia inherits Viaje(idioma = ["Español"]){
+  override method cuantosDias() = 1
+  override method implicaEsfuerzo() = true
+  override method sePuedeBroncear() = false 
+}
+
 
