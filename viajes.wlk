@@ -56,4 +56,16 @@ class ClasesDeGimnasia inherits Viaje(idioma = ["Español"]){
   override method sePuedeBroncear() = false 
 }
 
+class Socios {
+  const actividadesRealizadas = []
+  const maximoDeActiviades
 
+  method esAdoradorDelSol() = actividadesRealizadas.all({act => act.sePuedeBroncear()})
+
+  method actividadesEsforzadas() = actividadesRealizadas.find({act => act.implicaEsfuerzo()})
+
+  method realizaUnaActividad () = 
+    if(actividadesRealizadas.size() == maximoDeActiviades)
+      throw new DomainException(message = "El socio no puede realizar mas actividades")
+    
+}

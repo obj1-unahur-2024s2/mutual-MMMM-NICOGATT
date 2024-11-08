@@ -57,3 +57,9 @@ describe "group of viajes" {
         assert.that(salida3.sePuedeBroncear())
     }
 }
+
+describe "group of socios" {
+    test "descri" {
+        
+    }
+}
